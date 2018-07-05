@@ -1,12 +1,42 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block content %}
-    <div class='col-sm-6 col-sm-offset-3'>
-        <h1>Form</h1>
 
-        <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-            {{ form.as_p }}
-            <input type='submit' class='btn btn-primary' value='Create Post'/>
-        </form>
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{% static "img/home-bg.jpg" %}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>My Personal Blog</h1>
+                        <span class="subheading">This is my home!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <div class="col-sm-8 col-sm-offset-3">
+
+                            <h1>New Article</h1>
+
+                            <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+                                {{ form.as_p }}
+                                <input type='submit' class='btn btn-primary' value='Create Post'/>
+                            </form>
+
+                    </div>
+
+                </div>
+                <hr>
+
+            </div>
+        </div>
     </div>
 {% endblock content %}
