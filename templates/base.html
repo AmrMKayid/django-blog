@@ -11,8 +11,7 @@
     <meta name="author" content="">
 
     <title>{% block head_title %} Wessam Kayid Blog {% endblock head_title %}</title>
-    {#TODO: icon#}
-    <link rel="shortcut icon" href="{% static "img/home-bg.jpg" %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static "img/icon.png" %}" type="image/x-icon">
 
     <!-- Bootstrap core CSS -->
     <link href='{% static "vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
@@ -39,7 +38,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Wessam Kayid Blog 📝</a>
+        <a class="navbar-brand" href="/">Wessam Kayid Blog 📝</a>
 
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -54,14 +53,8 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About</a>
+                    <a class="nav-link" href="about">About</a>
                 </li>
-                {#                <li class="nav-item">#}
-                {#                    <a class="nav-link" href="post.html">Sample Post</a>#}
-                {#                </li>#}
-                {#                <li class="nav-item">#}
-                {#                    <a class="nav-link" href="contact.html">Contact</a>#}
-                {#                </li>#}
             </ul>
         </div>
 
@@ -83,7 +76,7 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="#">
+                        <a href="https://twitter.com/home?status={{ object.content|truncatechars:80 }}%20{{ request.build_absolute_uri }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -91,7 +84,7 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>

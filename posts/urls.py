@@ -8,4 +8,5 @@ urlpatterns = [
     re_path(r'^(?P<slug>[\w-]+)/$', views.post_detail, name='detail'),
     re_path(r'^(?P<slug>[\w-]+)/edit/$', views.post_update, name='update'),
     re_path(r'^(?P<slug>[\w-]+)/delete/$', views.post_delete),
+    re_path(r'^about$', views.about),
 ]
