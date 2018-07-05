@@ -2,10 +2,28 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.db.models.signals import pre_save
+from django.utils import timezone
 from django.utils.text import slugify
 
 
 # Create your models here.
+
+class PostQuerySet(models.query.QuerySet):
+    def not_draft(self):
+        return self.filter(draft=False)
+
+    def published(self):
+        return self.filter(publish__lte=timezone.now()).not_draft()
+
+
+class PostManager(models.Manager):
+    def get_queryset(self, *args, **kwargs):
+        return PostQuerySet(self.model, using=self._db)
+
+    def active(self, *args, **kwargs):
+        # Post.objects.all() = super(PostManager, self).all()
+        return self.get_queryset().published()
+
 
 def upload_location(instance, filename):
     return "%s/%s" % (instance.id, filename)
@@ -27,6 +45,8 @@ class Post(models.Model):
     publish = models.DateField(auto_now=False, auto_now_add=False)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    objects = PostManager()
 
     def __str__(self):
         return self.title
