@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('posts/$', post_home, name='post_home'),
+    path(r'^tinymce/', include('tinymce.urls')),
     re_path(r'^', include(('posts.urls', 'posts'), namespace='posts')),
 ]
 
